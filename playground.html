@@ -71,6 +71,27 @@
           <div class="u-tab-content">
             <div class="u-container-style u-custom-color-4 u-opacity u-opacity-40 u-tab-active u-tab-pane u-tab-pane-1" id="tab-c3de" role="tabpanel" aria-labelledby="link-tab-c3de">
               <div class="u-container-layout u-container-layout-1"></div>
+
+		    
+		    <form action="#" method="post" id="translationForm">
+    <div class="container">
+      <div class="text-box input-box">
+        <label for="source_lang">Select source language:</label>
+        <select id="source_lang" name="source_lang"></select>
+        <textarea id="userinput" name="userinput" placeholder="Enter text"></textarea>
+      </div>
+
+      <div class="text-box output-box">
+        <label for="target_lang">Select target language:</label>
+        <select id="target_lang" name="target_lang"></select>
+        <textarea id="output" name="output" placeholder="Translation" disabled></textarea>
+      </div>
+    </div>
+   <div class="center-container">
+    <input type="submit" value="Translate">
+  </form>
+
+		    
             </div>
             <div class="u-container-style u-custom-color-4 u-opacity u-opacity-40 u-tab-pane u-tab-pane-2" id="tab-a38c" role="tabpanel" aria-labelledby="link-tab-a38c">
               <div class="u-container-layout u-container-layout-2"></div>
@@ -98,5 +119,8 @@
     <footer class="u-align-center u-clearfix u-custom-color-1 u-footer u-footer" id="sec-9f85"><div class="u-clearfix u-sheet u-sheet-1" bis_skin_checked="1">
         <p class="u-small-text u-text u-text-variant u-text-1"> Sema AI © 2024. All rights r​eserved.</p>
       </div></footer>
-  
-</body></html>
+
+
+<script src="assets/translator.js"></script	  
+	</body>
+</html>

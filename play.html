@@ -71,6 +71,46 @@
         .container .text-box {
             width: 48%;
         }
+        .u-tab-list {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            justify-content: space-between;
+        }
+        .u-tab-item {
+            flex-grow: 1;
+            text-align: center;
+        }
+        .u-tab-link {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            background-color: #478ac9;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+        }
+        .u-tab-link:hover,
+        .u-tab-link:focus {
+            background-color: #357ab7;
+        }
+        .u-tab-link.active {
+            background-color: white;
+            color: #478ac9;
+            border-bottom: 1px solid white;
+        }
+        .u-tab-pane {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 0 0 5px 5px;
+        }
+        .u-tab-pane.active {
+            display: block;
+        }
     </style>
 </head>
 <body data-path-to-root="./" data-include-products="false" class="u-body u-xl-mode" data-lang="en">
@@ -124,16 +164,17 @@
                 <li class="u-tab-item" role="presentation"><a class="active u-border-3 u-border-active-custom-color-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-btn-round u-button-style u-custom-color-8 u-radius u-tab-link u-text-active-custom-color-1 u-text-body-color u-tab-link-1" id="link-tab-c3de" href="#tab-c3de" role="tab" aria-controls="tab-c3de" aria-selected="true">Translate</a></li>
                 <li class="u-tab-item" role="presentation"><a class="u-border-3 u-border-active-custom-color-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-btn-round u-button-style u-custom-color-8 u-radius u-tab-link u-text-active-custom-color-1 u-text-body-color u-tab-link-2" id="link-tab-a38c" href="#tab-a38c" role="tab" aria-controls="tab-a38c" aria-selected="false">Document</a></li>
                 <li class="u-tab-item" role="presentation"><a class="u-border-3 u-border-active-custom-color-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-btn-round u-button-style u-custom-color-8 u-radius u-tab-link u-text-active-custom-color-1 u-text-body-color u-tab-link-3" id="link-tab-fbe3" href="#tab-fbe3" role="tab" aria-controls="tab-fbe3" aria-selected="false">Chat</a></li>
-                <li class="u-tab-item" role="presentation"><a class="u-border-3 u-border-active-custom-color-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-btn-round u-button-style u-custom-color-8 u-radius u-tab-link u-text-active-custom-color-1 u-text-body-color u-tab-link-4" id="link-tab-812d" href="#tab-812d" role="tab" aria-controls="tab-812d" aria-selected="false">Custom</a></li>
+                <li class="u-tab-item" role="presentation"><a class="u-border-3 u-border-active-custom-color-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-btn-round u-button-style u-custom-color-8 u-radius u-tab-link u-text-active-custom-color-1 u-text-body-color u-tab-link-4" id="link-tab-9c66" href="#tab-9c66" role="tab" aria-controls="tab-9c66" aria-selected="false">URL</a></li>
+                <li class="u-tab-item" role="presentation"><a class="u-border-3 u-border-active-custom-color-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-btn-round u-button-style u-custom-color-8 u-radius u-tab-link u-text-active-custom-color-1 u-text-body-color u-tab-link-5" id="link-tab-f8b9" href="#tab-f8b9" role="tab" aria-controls="tab-f8b9" aria-selected="false">Semabox</a></li>
             </ul>
             <div class="u-tab-content">
                 <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-c3de" role="tabpanel" aria-labelledby="link-tab-c3de">
                     <div class="u-container-layout u-container-layout-1">
                         <h2 class="u-text u-text-default u-text-1">Translate</h2>
                         <div class="form-container">
-                            <form action="#" method="post">
-                                <label for="language">Select Language:</label>
-                                <select id="language" name="language">
+                            <form action="#" method="post" id="translationForm">
+                                <label for="source_lang">Select source language:</label>
+                                <select id="source_lang" name="source_lang">
                                     <option value="en">English</option>
                                     <option value="es">Spanish</option>
                                     <option value="fr">French</option>
@@ -143,12 +184,12 @@
                                 </select>
                                 <div class="container">
                                     <div class="text-box">
-                                        <label for="source-text">Source Text:</label>
-                                        <textarea id="source-text" name="source-text" placeholder="Enter text"></textarea>
+                                        <label for="userinput">Source Text:</label>
+                                        <textarea id="userinput" name="userinput" placeholder="Enter text"></textarea>
                                     </div>
                                     <div class="text-box">
-                                        <label for="translated-text">Translated Text:</label>
-                                        <textarea id="translated-text" name="translated-text" placeholder="Translation" readonly></textarea>
+                                        <label for="output">Translated Text:</label>
+                                        <textarea id="output" name="output" placeholder="Translation" readonly></textarea>
                                     </div>
                                 </div>
                                 <input type="submit" value="Translate">
@@ -168,10 +209,16 @@
                         <!-- Content for Chat tab -->
                     </div>
                 </div>
-                <div class="u-container-style u-tab-pane u-white u-tab-pane-4" id="tab-812d" role="tabpanel" aria-labelledby="link-tab-812d">
+                <div class="u-container-style u-tab-pane u-white u-tab-pane-4" id="tab-9c66" role="tabpanel" aria-labelledby="link-tab-9c66">
                     <div class="u-container-layout u-container-layout-4">
-                        <h2 class="u-text u-text-default u-text-4">Custom</h2>
-                        <!-- Content for Custom tab -->
+                        <h2 class="u-text u-text-default u-text-4">URL</h2>
+                        <!-- Content for URL tab -->
+                    </div>
+                </div>
+                <div class="u-container-style u-tab-pane u-white u-tab-pane-5" id="tab-f8b9" role="tabpanel" aria-labelledby="link-tab-f8b9">
+                    <div class="u-container-layout u-container-layout-5">
+                        <h2 class="u-text u-text-default u-text-5">Semabox</h2>
+                        <!-- Content for Semabox tab -->
                     </div>
                 </div>
             </div>
@@ -184,5 +231,21 @@
     </div>
 </footer>
 <script src="assets/translator.js"></script>
+<script>
+    document.querySelectorAll('.u-tab-link').forEach(function(tabLink) {
+        tabLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelectorAll('.u-tab-link').forEach(function(link) {
+                link.classList.remove('active');
+            });
+            document.querySelectorAll('.u-tab-pane').forEach(function(tabPane) {
+                tabPane.classList.remove('active');
+            });
+            tabLink.classList.add('active');
+            const tabPane = document.querySelector(tabLink.getAttribute('href'));
+            tabPane.classList.add('active');
+        });
+    });
+</script>
 </body>
 </html>
